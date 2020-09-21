@@ -30,6 +30,11 @@ public class Config extends AbstractElasticsearchConfiguration {
         return new ElasticsearchRestTemplate(elasticsearchClient());
     }
 
+    
+    @Override
+    public elasticsearchConverter() {
+    	
+    }
  
  
 }

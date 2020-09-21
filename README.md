@@ -1,2 +1,2 @@
-# ElasticSearc
+# ElasticSearch
 Elasticsearc and Spring Boot

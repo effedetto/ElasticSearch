@@ -1,2 +1,2 @@
 # ElasticSearch
-Elasticsearc and Spring Boot
+Elasticsearch and Spring Boot

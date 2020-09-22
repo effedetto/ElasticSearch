@@ -18,36 +18,36 @@ import org.springframework.data.elasticsearch.repository.config.EnableElasticsea
 //@ComponentScan
 @EnableElasticsearchRepositories
 @Configuration
-public class Config extends AbstractElasticsearchConfiguration {
+ public class Config   {
 
 	@Value("${elasticsearch.host}")
 	private String elasticsearchHost;
 
-//    @Bean
-	public RestHighLevelClient elasticsearchClient() {
-        ClientConfiguration clientConfiguration = ClientConfiguration.builder()
-            .connectedTo("https://search-prod-es-domain-5-o4ee3y3ccpdmihgvej2peb3e2m.eu-west-1.es.amazonaws.com")
-            .build();
+	//    @Bean
+	//	public RestHighLevelClient elasticsearchClient() {
+	//        ClientConfiguration clientConfiguration = ClientConfiguration.builder()
+	//            .connectedTo("https://search-prod-es-domain-5-o4ee3y3ccpdmihgvej2peb3e2m.eu-west-1.es.amazonaws.com")
+	//            .build();
+	//
+	//        return RestClients.create(clientConfiguration)
+	//            .rest();
+	//    }
 
-        return RestClients.create(clientConfiguration)
-            .rest();
-    }
+	//    @Bean
+	//    public ElasticsearchOperations elasticsearchTemplate() {
+	//        return new ElasticsearchRestTemplate(elasticsearchClient());
+	//    }
 
-//    @Bean
-    public ElasticsearchOperations elasticsearchTemplate() {
-        return new ElasticsearchRestTemplate(elasticsearchClient());
-    }
+	@Bean(destroyMethod = "close")
+	public RestHighLevelClient client() {
 
-    @Bean(destroyMethod = "close")
-    public RestHighLevelClient client() {
+		RestHighLevelClient client = new RestHighLevelClient(
+				RestClient.builder(new HttpHost(elasticsearchHost)));
 
-        RestHighLevelClient client = new RestHighLevelClient(
-                RestClient.builder(new HttpHost(elasticsearchHost)));
+		return client;
 
-        return client;
+	}
 
-    }
-    
- 
- 
+
+
 }

@@ -20,29 +20,12 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ElApplication {
 
-	@Autowired
-	private	RestHighLevelClient client;
-	
-	 RestClient lowLevelClient = client.getLowLevelClient(); 
+ 
 
 	public static void main(String[] args) {
 		SpringApplication.run(ElApplication.class, args);
 	}
 
-
-	public void run(String... args) throws Exception {
-
-
-		log.info("Started");
-
-		SearchRequest searchRequest = new SearchRequest();
-		SearchResponse response = client.search(searchRequest, RequestOptions.DEFAULT);
-		SearchHit[] searchHits = response.getHits().getHits();
-//		List<Object> results = 
-//				Arrays.stream(searchHits)
-//				.map(hit -> JSON.parseObject(hit.getSourceAsString(), Person.class))
-//				.collect(Collectors.toList());
-
-	}
+ 
 
 }
